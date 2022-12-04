@@ -30,17 +30,28 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 ```{r}
 Medicinal_plants_COVID_19_Cusco_English
+#install.packages("ggplot2")
 ```
 ```{r}
 med_plant <- Medicinal_plants_COVID_19_Cusco_English
 ```
 
 ```{r}
-#string <- str(med_plant)
-table(str($))
-barplot(df$Use.for.prevention)
+string <- str(med_plant)
+#table(str($))
+barplot(table(df$Use.for.prevention), main= "Plants Used for Prevention", ylab="Number of People", xlab ="Responses", col = c("red", "blue") )
 ```
 ```{r}
+barplot(table(df$Use.for.treatment), xlab="Responses", ylab="Nubmer of Patients", col=c("red","blue"), )
+```
+
+```{r}
+#install.packages("plotrix")
+#library(plotrix)
 table(df$Use.for.treatment)
+x <- c(506, 1241)
+piepercent <- round(100*x/sum(x), 1)
+pie(x, labels= piepercent, main= "Covid-19 Treated With Medicinal Plants", col= rainbow(length(x)))
+legend("topright", c("No", "Yes"), cex = .8, fill = rainbow(length(x)))
 ```
 
