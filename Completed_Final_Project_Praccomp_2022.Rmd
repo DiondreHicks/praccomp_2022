@@ -1,0 +1,76 @@
+---
+title: "Praccomp Final Project"
+author: "Diondre Hicks and Zach Smarr"
+date: "2022-11-22"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading the data into the environment
+```{r}
+df <- read.csv("Medicinal_plants_COVID-19_Cusco_English.csv")
+df
+#install.packages("ggplot2")
+```
+## Creating barplot for people who used plants for prevention
+```{r}
+barplot(table(df$Use.for.prevention), main= "Plants Used for Prevention", ylab="Number of People", xlab ="Responses", col = c("red", "blue"))
+table(df$COVID.19.diagnosis)
+table(df$Use.for.prevention, df$COVID.19.diagnosis)
+```
+## Barplot of Med Plants used for treatment
+```{r}
+barplot(table(df$Use.for.treatment), xlab="Responses", ylab="Nubmer of Patients",main = "Patients who Used for Treatment", col=c("red","blue"), )
+table(df$Use.for.treatment)
+table(df$COVID.19.diagnosis)
+table(df$Use.for.treatment, df$COVID.19.diagnosis)
+```
+## Created 3D piechart depicting Effectiveness of Med Plant Prevention
+```{r}
+#install.packages("plotrix")
+library(plotrix)
+table(df$Use.for.prevention, df$COVID.19.diagnosis)
+data <- c(1232, 169)
+piepercent3D <-round(100*data/sum(data), 1)
+lab <- c("Tested Negative for Covid", "Tested Positive for Covid")
+pie3D(data, labels= piepercent3D, labelcex = .6, main= "Used Medical Plants for Prevention")
+legend("topright", c("Negative", "Positive"), cex=.8, fill = c("red", "light blue"))
+```
+
+## Piechart showing Treatment of COVID-19 with plants
+```{r}
+#install.packages("plotrix")
+library(plotrix)
+table(df$Use.for.treatment)
+x <- c(506, 1241)
+piepercent <- round(100*x/sum(x), 1)
+pie(x, labels= piepercent, main= "Covid-19 Treated With Medicinal Plants", col= rainbow(length(x)))
+legend("topright", c("No", "Yes"), cex = .8, fill = rainbow(length(x)))
+```
+
+## Histogram showing Age distribution of study
+```{r}
+hist(table(df$Age), breaks=6)
+lines(density(table(df$Age)))
+```
+
+## Histogram of Age Distribtion who Used Plants for Prevention
+```{r}
+#df_preventionY <- 
+hist(table(subset(df, Use.for.prevention == "Yes", select = "Age")))
+#df_preventionY
+```
+
+## Histogram For no Plant usage for Prevention
+```{r}
+hist(table(subset(df, Use.for.prevention == "No", select = "Age")))
+```
+
+
+
