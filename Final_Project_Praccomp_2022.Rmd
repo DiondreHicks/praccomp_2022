@@ -2,7 +2,10 @@
 title: "Praccomp Final Project"
 author: "Diondre Hicks and Zach Smarr"
 date: "2022-11-22"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -38,20 +41,42 @@ med_plant <- Medicinal_plants_COVID_19_Cusco_English
 
 ```{r}
 string <- str(med_plant)
-#table(str($))
-barplot(table(df$Use.for.prevention), main= "Plants Used for Prevention", ylab="Number of People", xlab ="Responses", col = c("red", "blue") )
+table(df$Use.for.prevention)
+barplot(table(df$Use.for.prevention), main= "Plants Used for Prevention", ylab="Number of People", xlab ="Responses", col = c("red", "blue"))
+table(df$COVID.19.diagnosis)
+table(df$Use.for.prevention, df$COVID.19.diagnosis)
 ```
 ```{r}
-barplot(table(df$Use.for.treatment), xlab="Responses", ylab="Nubmer of Patients", col=c("red","blue"), )
+barplot(table(df$Use.for.treatment), xlab="Responses", ylab="Nubmer of Patients",main = "Patients who Used for Treatment", col=c("red","blue"), )
+table(df$Use.for.treatment)
+table(df$COVID.19.diagnosis)
+table(df$Use.for.treatment, df$COVID.19.diagnosis)
+```
+```{r}
+library(plotrix)
+table(df$Use.for.prevention, df$COVID.19.diagnosis)
+data <- c(1232, 169)
+piepercent3D <-round(100*data/sum(data), 1)
+lab <- c("Tested Negative for Covid", "Tested Positive for Covid")
+pie3D(data, col= rainbow(length(x)), labels= piepercent3D, labelcex = .6, main= "Used Medical Plants for Prevention")
+legend("topright", c("Negative", "Positive"), cex=.8, fill= rainbow(length(x)))
 ```
 
 ```{r}
 #install.packages("plotrix")
-#library(plotrix)
+library(plotrix)
 table(df$Use.for.treatment)
 x <- c(506, 1241)
 piepercent <- round(100*x/sum(x), 1)
 pie(x, labels= piepercent, main= "Covid-19 Treated With Medicinal Plants", col= rainbow(length(x)))
 legend("topright", c("No", "Yes"), cex = .8, fill = rainbow(length(x)))
+```
+
+```{r}
+hist(table(df$Age), breaks=6)
+```
+
+```{r}
+help("legend")
 ```
 
