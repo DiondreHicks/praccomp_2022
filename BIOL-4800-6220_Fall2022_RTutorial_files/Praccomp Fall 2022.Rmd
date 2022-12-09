@@ -1,0 +1,110 @@
+---
+title: "Untitled"
+output:
+  pdf_document: default
+  html_document: default
+date: "2022-11-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+gen.lm <- lm(spid.gen$left.bulb~spid.gen$habitat)
+
+```
+
+C. Analysis of Variance
+```{r}
+#gampinder <- read.csv(Downloads/data/gapminder_all.csv, header = T)
+gapminder_all
+gapminder <- gapminder_all
+```
+
+```{r}
+turkey.two.way <- TurkeyHSD(gapminder.lifeexp.continent.anova)
+gapminder.turkey.two.way
+```
+
+TurkeyHSD(gapminder.lifeexp.continent)
+```{r}
+TurkeyHSD(gapminder.lifeexp.continent)
+```
+
+```{r}
+#install.packages("multcomp", dependencies = T)
+library(multcomp)
+posthoc.gapminder.anacova <- glht(gapminder.lifeexp.continent_GDP.ancova, linfct mcp(continent= "Turkey"))
+```
+
+3 Principal Component Analysis
+
+```{r}
+spid.gen <- spider_genitalia
+```
+
+```{r}
+#spid.gen
+princomp(spid.gen)
+```
+
+```{r}
+biplot(sp.pca)
+```
+```{r}
+install.packages("ggfotify", dependicies =T)
+library(ggfortify)
+sp.pca.plot()
+```
+```{r}
+git config --global user.email "diondre_hicks@yahoo.com"
+```
+
+```{r}
+plot(1:25, rep(0.25,25), pch=1:25, col=1:25, ylim=c(0,6), cex=2, ylab= "line types (lty), plotting characters (pch),\nand colors (col) for plot and xyplot", lab=c(25,7,2))
+points(1:8, rep(0.5,8), pch=20, col=1:8, cex=3)
+abline(h=1:6, lty=1:6, lwd=5)
+```
+
+```{r}
+pdf("./Downloads/data/PlotCheatSheet.pdf")
+plot(1:25, rep(0.25,25), pch=1:25, col=1:25, ylim=c(0,6), cex=2, ylab= "line types (lty), plotting characters (pch),\nand colors (col) for plot and xyplot", lab=c(25,7,2))
+points(1:8, rep(0.5,8), pch=20, col=1:8, cex=3)
+abline(h=1:6, lty=1:6, lwd=5)
+dev.off()
+```
+
+## Looping and Conditionals
+```{r}
+x<- -0
+if(x>0){
+  print("Positive Number")
+} else if(x<0){
+  print("Negative Number")
+} else
+  print("Zero")
+```
+```{r}
+
+```
+
